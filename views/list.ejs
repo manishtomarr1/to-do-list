@@ -1,0 +1,48 @@
+
+<%- include("header") -%>
+<!-- this is called the layout concept in ejs, ie we dont requried to re write the same code in diff pages -->
+
+
+<div class="box " >
+
+<h1 class="to-do"> To Do List </h1>
+</div>
+
+<div class="box" id="heading">
+
+<h1> <%= listTittle %> </h1> <!-- comes form app.js like we embeded javascript code inside html called templating in ejs -->
+</div>
+
+<div class="box">
+
+
+  <%  for(let i=0; i<newToDo.length; i++) { %> <!-- if we want to add javascript we use this syntax of ejs-->
+    <form action="/delete" method="post">
+      <div class="item">
+        <input type="checkbox" value= "<%= newToDo[i]._id %>" name="checkbox" onChange="this.form.submit()"> <!-- add checkbox -->
+        <p><%= newToDo[i].name %></p>
+      </div>
+    </form>
+    
+  <%  } %>
+
+  <form class="item" action="/" method="post"> <!--post request to sever by click the btn-->
+
+     <input type="text" name="newitem" placeholder="New Item" autocomplete="off"> <!--autocomplete for randon suggestions -->
+     <button type="submit" name="list" value = <%= listTittle %>>+</button> <!-- for dynamic request if we want to use to do any other page then request not add to this current page -->
+<!-- list gives us name in which our to do list will and newitem gives the name of new item-->
+
+  </form>
+
+</div>
+
+
+
+<div class="intro">
+  <h3 class ="intro-heading"> Develop By Manish Tomar. </h3>
+  <p>Copyright 2023.</p>
+</div>
+
+
+
+<%- include("footer") -%>
